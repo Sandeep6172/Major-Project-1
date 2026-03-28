@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberShield AI — Security Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="shield-icon">🛡</span>
+      <span class="brand-name">CyberShield <span>AI</span></span>
+    </div>
+    <ul class="nav-links">
+      <li class="active" onclick="setPage(this)">Dashboard</li>
+      <li onclick="setPage(this)">Threats</li>
+      <li onclick="setPage(this)">Network</li>
+      <li onclick="setPage(this)">Reports</li>
+      <li onclick="setPage(this)">Settings</li>
+    </ul>
+    <div class="nav-right">
+      <span class="status-dot green"></span>
+      <span class="status-text">System Online</span>
+      <div class="avatar">AD</div>
+    </div>
+  </nav>
+
+  <!-- MAIN WRAPPER -->
+  <div class="wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <p class="sidebar-label">MODULES</p>
+      <div class="sidebar-item active">
+        <span>📊</span> Overview
+      </div>
+      <div class="sidebar-item">
+        <span>🚨</span> Alerts
+        <span class="badge red">5</span>
+      </div>
+      <div class="sidebar-item">
+        <span>🧠</span> AI Engine
+        <span class="badge green">ON</span>
+      </div>
+      <div class="sidebar-item">
+        <span>🌐</span> Live Traffic
+      </div>
+      <div class="sidebar-item">
+        <span>🔒</span> Firewall
+      </div>
+      <div class="sidebar-item">
+        <span>🔍</span> Forensics
+      </div>
+
+      <p class="sidebar-label" style="margin-top:24px">SYSTEM HEALTH</p>
+      <div class="health-item">
+        <span>CPU</span>
+        <div class="health-bar"><div class="health-fill" style="width:62%;background:#00d4ff"></div></div>
+        <span>62%</span>
+      </div>
+      <div class="health-item">
+        <span>RAM</span>
+        <div class="health-bar"><div class="health-fill" style="width:48%;background:#00ff88"></div></div>
+        <span>48%</span>
+      </div>
+      <div class="health-item">
+        <span>NET</span>
+        <div class="health-bar"><div class="health-fill" style="width:81%;background:#ff9900"></div></div>
+        <span>81%</span>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- PAGE TITLE -->
+      <div class="page-header">
+        <div>
+          <h1>Security Dashboard</h1>
+          <p class="subtitle">Real-time AI-powered threat detection &amp; prevention</p>
+        </div>
+        <div class="page-actions">
+          <span id="live-clock" class="clock">--:--:--</span>
+          <button class="btn-primary" onclick="runScan()">🔍 Run Scan</button>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="cards-grid">
+        <div class="card blue">
+          <div class="card-icon">📡</div>
+          <div class="card-info">
+            <div class="card-value">1,247,832</div>
+            <div class="card-label">Events Analyzed</div>
+            <div class="card-change up">↑ 12% today</div>
+          </div>
+        </div>
+        <div class="card red">
+          <div class="card-icon">⚠️</div>
+          <div class="card-info">
+            <div class="card-value">247</div>
+            <div class="card-label">Threats Detected</div>
+            <div class="card-change down">↑ 8% today</div>
+          </div>
+        </div>
+        <div class="card green">
+          <div class="card-icon">🛡</div>
+          <div class="card-info">
+            <div class="card-value">99.3%</div>
+            <div class="card-label">Threats Blocked</div>
+            <div class="card-change up">↑ 0.2% today</div>
+          </div>
+        </div>
+        <div class="card orange">
+          <div class="card-icon">⚡</div>
+          <div class="card-info">
+            <div class="card-value">1.2ms</div>
+            <div class="card-label">Response Time</div>
+            <div class="card-change up">↓ 15% faster</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIDDLE ROW -->
+      <div class="mid-row">
+
+        <!-- TRAFFIC CHART -->
+        <div class="box chart-box">
+          <div class="box-header">
+            <h2>Network Traffic (Last 12h)</h2>
+            <div class="legend">
+              <span class="dot blue-dot"></span>Normal
+              <span class="dot orange-dot"></span>Elevated
+              <span class="dot red-dot"></span>Anomaly
+            </div>
+          </div>
+          <div class="bar-chart" id="barChart"></div>
+        </div>
+
+        <!-- THREAT BREAKDOWN DONUT -->
+        <div class="box donut-box">
+          <div class="box-header">
+            <h2>Threat Breakdown</h2>
+          </div>
+          <div class="donut-container">
+            <svg viewBox="0 0 160 160" class="donut-svg">
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#0d1f2d" stroke-width="28"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#ff3366" stroke-width="28"
+                stroke-dasharray="131.9 245.1" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#ff9900" stroke-width="28"
+                stroke-dasharray="105.6 271.4" stroke-dashoffset="-131.9" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#00d4ff" stroke-width="28"
+                stroke-dasharray="67.9 309.1" stroke-dashoffset="-237.5" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#00ff88" stroke-width="28"
+                stroke-dasharray="45.2 331.8" stroke-dashoffset="-305.4" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="60" fill="none" stroke="#4a7a9b" stroke-width="28"
+                stroke-dasharray="26.3 350.7" stroke-dashoffset="-350.6" transform="rotate(-90 80 80)"/>
+              <text x="80" y="76" text-anchor="middle" fill="#e0f0ff" font-size="18" font-weight="bold" font-family="monospace">247</text>
+              <text x="80" y="92" text-anchor="middle" fill="#4a7a9b" font-size="9" font-family="monospace">THREATS</text>
+            </svg>
+            <ul class="donut-legend">
+              <li><span style="background:#ff3366"></span>DDoS <strong>35%</strong></li>
+              <li><span style="background:#ff9900"></span>Malware <strong>28%</strong></li>
+              <li><span style="background:#00d4ff"></span>SQL Injection <strong>18%</strong></li>
+              <li><span style="background:#00ff88"></span>Phishing <strong>12%</strong></li>
+              <li><span style="background:#4a7a9b"></span>Other <strong>7%</strong></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- THREAT TABLE -->
+      <div class="box">
+        <div class="box-header">
+          <h2>🚨 Live Threat Feed</h2>
+          <div style="display:flex;gap:8px;align-items:center">
+            <select class="filter-select" onchange="filterThreats(this.value)">
+              <option value="all">All Severity</option>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+            </select>
+            <button class="btn-outline">Export CSV</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="threat-table">
+            <thead>
+              <tr>
+                <th>Severity</th>
+                <th>Threat Type</th>
+                <th>Description</th>
+                <th>Source IP</th>
+                <th>Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="threatBody">
+              <tr data-sev="critical">
+                <td><span class="sev critical">Critical</span></td>
+                <td>DDoS Attack</td>
+                <td>UDP flood — 47,000 req/s on port 53</td>
+                <td class="ip">185.220.101.47</td>
+                <td class="time">02:14:33</td>
+                <td><button class="action-btn blocked">✓ Blocked</button></td>
+              </tr>
+              <tr data-sev="critical">
+                <td><span class="sev critical">Critical</span></td>
+                <td>SQL Injection</td>
+                <td>Error-based blind injection on /api/users</td>
+                <td class="ip">91.108.4.220</td>
+                <td class="time">02:12:17</td>
+                <td><button class="action-btn danger" onclick="blockThreat(this)">⊘ Block</button></td>
+              </tr>
+              <tr data-sev="high">
+                <td><span class="sev high">High</span></td>
+                <td>Brute Force</td>
+                <td>SSH credential stuffing — 1,247/min</td>
+                <td class="ip">45.142.212.18</td>
+                <td class="time">02:08:44</td>
+                <td><button class="action-btn blocked">✓ Blocked</button></td>
+              </tr>
+              <tr data-sev="high">
+                <td><span class="sev high">High</span></td>
+                <td>C2 Beacon</td>
+                <td>Cobalt Strike beacon — port 4444</td>
+                <td class="ip">23.105.131.87</td>
+                <td class="time">02:05:11</td>
+                <td><button class="action-btn danger" onclick="blockThreat(this)">⊘ Block</button></td>
+              </tr>
+              <tr data-sev="medium">
+                <td><span class="sev medium">Medium</span></td>
+                <td>XSS</td>
+                <td>Reflected XSS on /search endpoint</td>
+                <td class="ip">192.168.4.88</td>
+                <td class="time">01:58:22</td>
+                <td><button class="action-btn blocked">✓ Blocked</button></td>
+              </tr>
+              <tr data-sev="medium">
+                <td><span class="sev medium">Medium</span></td>
+                <td>Port Scan</td>
+                <td>Full TCP scan on subnet 10.0.2.0/24</td>
+                <td class="ip">172.16.0.45</td>
+                <td class="time">01:45:10</td>
+                <td><button class="action-btn danger" onclick="blockThreat(this)">⊘ Block</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-row">
+
+        <!-- AI ANALYSIS -->
+        <div class="box ai-box">
+          <div class="box-header">
+            <h2>🧠 AI Analysis</h2>
+            <span class="ai-status">● ACTIVE</span>
+          </div>
+          <div class="ai-card blue-border">
+            <div class="ai-card-title">ML Engine — Threat Score</div>
+            <p class="ai-card-text">Coordinated botnet attack from AS40824. 3,400+ nodes targeting Layer 3/4 services.</p>
+            <div class="progress-row">
+              <span>Confidence</span>
+              <div class="progress-bar"><div class="progress-fill" style="width:94%;background:#00d4ff"></div></div>
+              <span>94%</span>
+            </div>
+          </div>
+          <div class="ai-card orange-border">
+            <div class="ai-card-title">Anomaly Detection — Alert</div>
+            <p class="ai-card-text">Lateral movement on VLAN. INT-WS-07 accessed 14 services in 4 min — outside baseline.</p>
+            <div class="progress-row">
+              <span>Confidence</span>
+              <div class="progress-bar"><div class="progress-fill" style="width:87%;background:#ff9900"></div></div>
+              <span>87%</span>
+            </div>
+          </div>
+          <div class="ai-card green-border">
+            <div class="ai-card-title">Auto-Response — Executed</div>
+            <p class="ai-card-text">DDoS mitigation deployed. BGP blackhole active. Legitimate traffic at 99.7% availability.</p>
+          </div>
+        </div>
+
+        <!-- LIVE LOG -->
+        <div class="box log-box">
+          <div class="box-header">
+            <h2>📋 Live System Log</h2>
+            <button class="btn-outline" onclick="clearLog()">Clear</button>
+          </div>
+          <div class="log-container" id="logContainer">
+            <div class="log-line error"><span class="log-time">02:14:33</span><span class="log-tag crit">[CRIT]</span> DDoS flood detected — mitigation engaged</div>
+            <div class="log-line warn"><span class="log-time">02:14:31</span><span class="log-tag warn">[WARN]</span> Traffic spike: 47k req/s on ingress GW</div>
+            <div class="log-line ok"><span class="log-time">02:14:28</span><span class="log-tag ok">[OK]</span> Firewall rule ACL-2247 applied</div>
+            <div class="log-line info"><span class="log-time">02:14:22</span><span class="log-tag info">[INFO]</span> ML model: threat_score=0.94</div>
+            <div class="log-line error"><span class="log-time">02:14:18</span><span class="log-tag crit">[CRIT]</span> SQL injection blocked: /api/users</div>
+            <div class="log-line info"><span class="log-time">02:14:10</span><span class="log-tag info">[INFO]</span> Signature DB: 2841 new patterns loaded</div>
+            <div class="log-line warn"><span class="log-time">02:14:05</span><span class="log-tag warn">[WARN]</span> SSH brute force on SERV-04 rate-limited</div>
+            <div class="log-line ok"><span class="log-time">02:13:58</span><span class="log-tag ok">[OK]</span> Auto-response: Geo-block AS40824</div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="box actions-box">
+          <div class="box-header">
+            <h2>⚡ Quick Actions</h2>
+          </div>
+          <div class="actions-grid">
+            <button class="qa-btn red-btn" onclick="qaAction(this)"><span>🔴</span>Kill Switch</button>
+            <button class="qa-btn" onclick="qaAction(this)"><span>🔒</span>Lockdown</button>
+            <button class="qa-btn" onclick="qaAction(this)"><span>📸</span>Snapshot</button>
+            <button class="qa-btn" onclick="qaAction(this)"><span>🔄</span>Rescan All</button>
+            <button class="qa-btn" onclick="qaAction(this)"><span>🧹</span>Quarantine</button>
+            <button class="qa-btn" onclick="qaAction(this)"><span>📤</span>Report</button>
+          </div>
+          <div class="threat-level-box">
+            <div class="tl-header">
+              <span>Overall Threat Level</span>
+              <span class="tl-value warn">ELEVATED</span>
+            </div>
+            <div class="tl-bar">
+              <div class="tl-fill" style="width:67%"></div>
+            </div>
+            <div class="tl-score">67 / 100</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
